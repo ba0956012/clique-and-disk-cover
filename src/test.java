@@ -22,11 +22,13 @@ public class test {
 		Circle C1= smallestenclosingcircle.makeCircle(points);
 		System.out.println("R : " + C1.r);
 		*/
+		
 		/*
-		 //test : create a clique and the probability
+		//star test : create a clique and calculate probability
 		double count=0;
-		double round=100000;
-		double edge = 2.7*2;
+		double round=1000;
+		double edge = 1.74;
+		double radius = 1;
 		int size;
 		int max_size = 100;
 		//int max_edge = 2;
@@ -43,24 +45,26 @@ public class test {
 		//System.out.println(C.r);
 		for(int i=0;i<round;i++){
 		clique cq = new clique();
-		cq.create_clique_IR(size-1);		
+		//cq.create_clique_IR(size-1);	
+		cq.create_clque(edge,size-1);
 		Circle C = smallestenclosingcircle.makeCircle(cq.points);
 		//System.out.println(C.r);
-		if(C.r>edge*0.5){
+		if(C.r>radius){
 			count++;
 		}
 		cq.clean_clque();
 		}
 		double p =count/round;
-		
-		System.out.println("size : "+ size);
-		System.out.println("% : "+ p);
-		
+		if(p!=0){
+			System.out.println("size : "+ size);
+			System.out.println("% : "+ p);
+			}
 		fw.write(size + ","+p+ "\r\n");
 		}
 		
 		fw.close();
 		//}
+		//end test : create a clique and calculate probability
 		*/
 		
 		int nodeNumber=100;
@@ -69,6 +73,7 @@ public class test {
 		
 		//
 		/*
+		//disk cover for each clique
 		for (nodeNumber=nodeNumber;nodeNumber<=100;nodeNumber=nodeNumber+100){
 			double stopNumber=0;
 			for(int file=1;file<=1;file++){
@@ -80,7 +85,7 @@ public class test {
 					
 				Circle C = smallestenclosingcircle.makeCircle(cf.cliques.get(i).points);
 				//System.out.println("C.r : "+C.r);
-				if(C.r<=5.4*0.5){
+				if(C.r<=r){
 					count++;
 				}
 				else if(cf.cliques.get(i).twoCover()==true){
@@ -101,10 +106,11 @@ public class test {
 			fw.close();
 			System.out.println(stopNumber);
 		}
-		
+		//disk cover for each clique
 		*/
 		
 		/*
+		//verify the distance of points in a clique 
 		int test=0;
 		for (nodeNumber=nodeNumber;nodeNumber<=1000;nodeNumber=nodeNumber+100){
 			System.out.println("nodeNumber : "+nodeNumber);
@@ -126,9 +132,11 @@ public class test {
 				}
 			}
 		}
+		//verify the distance of points in a clique 
 		*/
 		
 		/*
+		//greedy cover points 
 		nodeNumber=100;
 		for (nodeNumber=nodeNumber;nodeNumber<=1000;nodeNumber=nodeNumber+100){
 			double stopNumber=0;
@@ -151,14 +159,30 @@ public class test {
 			}
 			System.out.println(stopNumber);
 		}
+		//greedy cover points 
 		*/
 		
+		
+		/*
+		//create ILP data
 		for(int j=100; j<=1000;j=j+100){
 			for(int i=3; i<=100;i++){
 				String file = "c:\\"+j+"\\"+i+".dat";
 				cliqueFile cf = new cliqueFile();
 				cf.Read("c:\\"+j+"\\"+i+".txt");
 				cf.ILPdata(r, file, bound);
+			}
+		}
+		//create ILP data
+		*/
+		String ReadFile; 
+		String WriteFile;
+		for(int i=100; i<=1000;i=i+100){
+			for(int j=1;j<=100;j++){
+				ReadFile="c:\\r=2\\region 25,25\\clique\\"+i+"\\"+j+".txt";
+				WriteFile="c:\\r=2\\region 25,25\\points\\"+i+"\\"+j+".txt";
+				cliqueFile cf = new cliqueFile();
+				cf.createVertexFile(ReadFile, WriteFile);
 			}
 		}
 		

@@ -93,5 +93,16 @@ public class cliqueFile {
 		fw.write("];");
 		fw.close();
 	}
+	
+	public void createVertexFile(String ReadFile, String WriteFile) throws IOException{
+		this.Read(ReadFile);
+		FileWriter	fw = new FileWriter(WriteFile);
+		for(int i=0; i<this.cliques.size();i++){
+			for(int j=0; j<this.cliques.get(i).points.size();j++){
+				fw.write(this.cliques.get(i).points.get(j).x+","+this.cliques.get(i).points.get(j).y+"\r\n");
+			}
+		}
+		fw.close();
+	}
 
 }
