@@ -177,13 +177,20 @@ public class test {
 		*/
 		String ReadFile; 
 		String WriteFile;
+		diskCover dc = new diskCover(); 
+		
 		for(int i=100; i<=1000;i=i+100){
+			double NoD=0;
 			for(int j=1;j<=100;j++){
 				ReadFile="c:\\r=2\\region 25,25\\clique\\"+i+"\\"+j+".txt";
 				WriteFile="c:\\r=2\\region 25,25\\points\\"+i+"\\"+j+".txt";
 				cliqueFile cf = new cliqueFile();
-				cf.createVertexFile(ReadFile, WriteFile);
+				cf.Read(ReadFile);
+				//cf.createVertexFile(ReadFile, WriteFile);
+				NoD=NoD+dc.HexagonTessellation(cf.getPoint2DList(), bound, r).size();
+				
 			}
+			System.out.println(NoD/100);
 		}
 		
 	}//main

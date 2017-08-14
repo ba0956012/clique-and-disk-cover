@@ -1,3 +1,4 @@
+import java.awt.geom.Point2D;
 import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -56,6 +57,18 @@ public class cliqueFile {
 		for(int i=0;i<this.cliques.size();i++){
 			for(int j=0; j<this.cliques.get(i).points.size();j++){
 				Point p = new Point(this.cliques.get(i).points.get(j).getX(),this.cliques.get(i).points.get(j).getY());
+				P.add(p);
+			}
+		}
+		return P;	
+	}
+	
+	public List<Point2D> getPoint2DList(){
+		List<Point2D> P = new ArrayList();
+		for(int i=0;i<this.cliques.size();i++){
+			for(int j=0; j<this.cliques.get(i).points.size();j++){
+				Point2D p = new Point2D.Double();
+				p.setLocation(this.cliques.get(i).points.get(j).getX(),this.cliques.get(i).points.get(j).getY());
 				P.add(p);
 			}
 		}

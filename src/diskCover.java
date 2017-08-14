@@ -111,12 +111,27 @@ public List<Point2D> greedyCover1(List<Point2D> P,double r){
 	return coverPoint;
 }
 
-/*
-public List<Point2D> HexagonTessellation(List<Point2D> P,double r){
+
+public List<Point2D> HexagonTessellation(List<Point2D> P, double region, double r){
 	
-	
+	HexagonalGrid HG= new HexagonalGrid();
+	HG.partation(region, r);
+	List<Point2D> disk = new ArrayList();
+	boolean cover = false;
+	for(int i=0;i<HG.H.size();i++){
+		cover = false;
+		for(int j=0; j<P.size();j++){
+			if(HG.H.get(i).contains(P.get(j))){
+				cover = true;
+			}	
+		}
+		if(cover == true){
+			disk.add(HG.H.get(i).center);
+		}
+	}
+	return disk;
 }
-*/
+
 
 
 }
