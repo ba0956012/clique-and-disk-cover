@@ -79,6 +79,7 @@ public List<Point2D> greedyCover1(List<Point2D> P,double r){
 		}
 		coverList.add(testCover);
 	}
+	
 	while(P.size()>0){
 		maxCoverNumber=0;
 		

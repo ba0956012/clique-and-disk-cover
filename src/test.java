@@ -187,8 +187,7 @@ public class test {
 				cliqueFile cf = new cliqueFile();
 				cf.Read(ReadFile);
 				//cf.createVertexFile(ReadFile, WriteFile);
-				NoD=NoD+dc.HexagonTessellation(cf.getPoint2DList(), bound, r).size();
-				
+				NoD=NoD+dc.HexagonTessellation(cf.getPoint2DList(), bound, r).size();			
 			}
 			System.out.println(NoD/100);
 		}

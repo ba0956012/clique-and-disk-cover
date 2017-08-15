@@ -11,10 +11,11 @@ public class HexagonalGrid {
 	public void partation(double region, double r){
 		this.region=region;
 		this.r=r;
-		region = (r-region%r)+region;
+		region = region+2*r;
+		double d = 0.5*Math.sqrt(3)*r;
 		
-		for(double y=0.5*Math.sqrt(3)*r;y<region;y=y+Math.sqrt(3)*r){
-			for(double x=0.5*r;x<region;x=x+3*r){
+		for(double y=d;y<=region;y=y+2*d){
+			for(double x=0.5*r;x<=region;x=x+3*r){
 				Point2D p = new Point2D.Double();
 				p.setLocation(x,y);
 				Hexagonal h= new Hexagonal(p,r);
@@ -22,8 +23,8 @@ public class HexagonalGrid {
 			}
 		}
 		
-		for(double y=0;y<region;y=y+Math.sqrt(3)*r){
-			for(double x=1.5*r;x<region;x=x+3*r){
+		for(double y=0;y<=region;y=y+2*d){
+			for(double x=2*r;x<=region;x=x+3*r){
 				Point2D p = new Point2D.Double();
 				p.setLocation(x,y);
 				Hexagonal h= new Hexagonal(p,r);
