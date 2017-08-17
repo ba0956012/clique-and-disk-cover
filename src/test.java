@@ -7,21 +7,7 @@ import java.io.IOException;
 public class test {
 	
 	public static void main(String args[]) throws Exception{
-		/*
-		List<Point> points = new ArrayList<>();
-		Point p1 = new Point(6.5,11.6);
-		Point p2 = new Point(5.0,9.0);
-		Point p3 = new Point(8.0,9.0);
-		points.add(p1);
-		points.add(p2);
-		points.add(p3);
-		System.out.println(p1.distance(p2));
-		System.out.println(p1.distance(p3));
-		System.out.println(p3.distance(p2));
-		
-		Circle C1= smallestenclosingcircle.makeCircle(points);
-		System.out.println("R : " + C1.r);
-		*/
+
 		
 		/*
 		//star test : create a clique and calculate probability
@@ -69,7 +55,7 @@ public class test {
 		
 		int nodeNumber=100;
 		double r=2.7;
-		double bound = 25;
+		double bound = 100;
 		
 		//
 		/*
@@ -109,31 +95,6 @@ public class test {
 		//disk cover for each clique
 		*/
 		
-		/*
-		//verify the distance of points in a clique 
-		int test=0;
-		for (nodeNumber=nodeNumber;nodeNumber<=1000;nodeNumber=nodeNumber+100){
-			System.out.println("nodeNumber : "+nodeNumber);
-			double stopNumber=0;
-			for(int file=1;file<=100;file++){
-				cliqueFile cf = new cliqueFile();
-				cf.Read("c:\\"+nodeNumber+"\\"+file+".txt");
-				
-				if(cf.getPointList().size()!= nodeNumber)
-					System.out.println("clique size false "+cf.getPointList().size());	
-				
-				for(int i=0;i<cf.cliques.size();i++){
-					//System.out.println("clique "+i+" : "+cf.cliques.get(i).points);
-					if(cf.cliques.get(i).checkClique(r*2)==false){
-						test++;
-						System.out.println("clique false file "+ test);	
-						//System.out.println(cf.cliques.get(i).points.get(0).getX());
-					}
-				}
-			}
-		}
-		//verify the distance of points in a clique 
-		*/
 		
 		/*
 		//greedy cover points 
@@ -163,18 +124,27 @@ public class test {
 		*/
 		
 		
-		/*
+		
 		//create ILP data
+		
 		for(int j=100; j<=1000;j=j+100){
-			for(int i=3; i<=100;i++){
+			for(int i=1; i<=100;i++){
 				String file = "c:\\"+j+"\\"+i+".dat";
 				cliqueFile cf = new cliqueFile();
 				cf.Read("c:\\"+j+"\\"+i+".txt");
 				cf.ILPdata(r, file, bound);
 			}
 		}
+		
 		//create ILP data
-		*/
+		
+		
+		//Hexagonal grid cover
+		/*
+		HexagonalGrid HG= new HexagonalGrid();
+		HG.partation(100, 5.4);
+		System.out.println("Grid size: "+HG.H.size());
+		
 		String ReadFile; 
 		String WriteFile;
 		diskCover dc = new diskCover(); 
@@ -191,6 +161,8 @@ public class test {
 			}
 			System.out.println(NoD/100);
 		}
+		*/
+		//Hexagonal grid cover
 		
 	}//main
 

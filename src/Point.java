@@ -22,8 +22,6 @@ final class Point {
 		this.y = y;
 	}
 	
-
-	
 	public Point subtract(Point p) {
 		return new Point(x - p.x, y - p.y);
 	}

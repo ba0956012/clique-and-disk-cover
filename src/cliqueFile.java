@@ -22,8 +22,11 @@ public class cliqueFile {
 			s = br.readLine();			
 			if(s.contains(",")==true){
 			String[] a = s.split(",");
-			Point p = new Point(Double.parseDouble(a[0]),Double.parseDouble(a[1]));
-			pl.add(p);
+			
+			for(int t=0;t<a.length;t=t+2){
+				Point p = new Point(Double.parseDouble(a[t]),Double.parseDouble(a[t+1]));
+				pl.add(p);
+				}
 			}
 			
 			else if(i==0||i==1){
@@ -78,14 +81,33 @@ public class cliqueFile {
 	public void ILPdata(double r, String file, double bound) throws IOException{
 		List<Point> P = new ArrayList();
 		P=this.getPointList();
-		List<Point> testPoint = new ArrayList();
+		List<TestPoint> testPoint = new ArrayList();
 		
 		for(double i=0; i<=bound;i=i+1){
 			for(double j=0; j<=bound;j=j+1){
-				Point p = new Point(i,j);
-				testPoint.add(p);
+				TestPoint p = new TestPoint();
+				p.setLocation(i,j);
+				for(int t=0; t<P.size();t++){
+					Point2D.Double p2D = new Point2D.Double(P.get(t).getX(),P.get(t).getY());
+					p.addCoverPoint(r, p2D);
+					
+				}
+				//System.out.println(p.coverPoint.size());
+				
+				boolean reduce =false;
+				for(int t=0; t<testPoint.size();t++){
+					if(p.CoverEqule(testPoint.get(t))==true){
+						reduce = true;
+					}
+				}
+				if(testPoint.size()==0 || reduce == false){
+					testPoint.add(p);
+				}
 			}
 		}
+		
+		System.out.println(testPoint.size());
+		
 		
 		FileWriter	fw = new FileWriter(file);
 		
@@ -95,7 +117,8 @@ public class cliqueFile {
 		for(int i=0;i<P.size();i++){
 			fw.write("[");
 			for(int j=0;j<testPoint.size();j++){
-				if(P.get(i).distance(testPoint.get(j))<=r){
+				Point2D.Double p2D = new Point2D.Double(P.get(i).getX(),P.get(i).getY());
+				if(p2D.distance(testPoint.get(j))<=r){
 					fw.write(" 1");
 				}
 				else
@@ -105,6 +128,8 @@ public class cliqueFile {
 		}	
 		fw.write("];");
 		fw.close();
+		
+		
 	}
 	
 	public void createVertexFile(String ReadFile, String WriteFile) throws IOException{
